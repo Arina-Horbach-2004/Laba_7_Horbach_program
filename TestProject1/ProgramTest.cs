@@ -246,5 +246,23 @@ namespace TestProject
             // Clean up
             File.Delete(temp_Json_File_Path);
         }
+
+        [TestMethod]
+        public void Read_From_File_JSON_Returns_List_Of_People()
+        {
+            // Arrange
+            File.WriteAllText(temp_Json_File_Path, "{\"Name\":\"Ferit\",\"Gender\":\"Male\"}\n{\"Name\":\"Seyran\",\"Gender\":\"Female\"}");
+
+            // Act
+            List<Person> people = Program.ReadFromFileJson(temp_Json_File_Path);
+
+            // Assert
+            Assert.AreEqual(2, people.Count);
+            Assert.AreEqual("Ferit", people[0].Name);
+            Assert.AreEqual("Seyran", people[1].Name);
+
+            // Clean up
+            File.Delete(temp_Json_File_Path);
+        }
     }
 }
