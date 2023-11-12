@@ -478,5 +478,34 @@ public class Program
         return accounts;
     }
 
+    public static List<Person> ReadFromFileCSV(string path)
+    {
+        List<Person> accounts = new List<Person>();
 
+        try
+        {
+            List<string> lines = new List<string>();
+            lines = File.ReadAllLines(path).ToList();
+            Console.WriteLine("\nContents of CSV file: \n");
+            foreach (var item in lines)
+            {
+                Console.WriteLine(item);
+            }
+            foreach (var item in lines)
+            {
+                Person? account;
+                bool result = Person.TryParse(item, out account);
+                if (result) accounts.Add(account);
+            }
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Reading CSV file error: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return accounts;
+    }
 }
