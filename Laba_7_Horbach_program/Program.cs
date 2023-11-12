@@ -138,5 +138,98 @@ public class Program
         }
     }
 
+    public static void Add_Person(List<Person> people, int max_objects)
+    {
+        if (people.Count < max_objects)
+        {
+            Console.Write("1 - використання конструкторів, 2 - В форматі: Name,Gender,BirthDate,Number\n");
+            int answer = int.Parse(Console.ReadLine());
+            switch (answer)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Оберіть конструктор: 1 - без параметрів, 2 - заповнити ім'я та стать, 3 - всі параметри");
+                        int constructor = int.Parse(Console.ReadLine());
+                        switch (constructor)
+                        {
+                            case 1:
+                                Person person = new Person();
+                                people.Add(person);
+                                Console.Write("Об'єкт додано");
+                                break;
+                            case 2:
+                                Console.Write("Введіть ім'я: ");
+                                string name = Console.ReadLine();
+                                Console.Write("Введіть стать (Male/Female): ");
+                                if (Enum.TryParse(typeof(Gender), Console.ReadLine(), true, out object genderobj))
+                                {
+                                    Gender gender = (Gender)genderobj;
+                                    Person personWithGender = new Person(name, gender);
+                                    people.Add(personWithGender);
+                                    Console.Write("Об'єкт додано");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Некоректна стать.");
+                                }
+                                break;
+                            case 3:
+                                Console.Write("Введіть ім'я: ");
+                                string _name = Console.ReadLine();
+                                Gender _gender = Gender.Male;
+                                Console.Write("Введіть стать (Male/Female): ");
+                                if (Enum.TryParse(typeof(Gender), Console.ReadLine(), true, out object _parsedGenderObj))
+                                {
+                                    _gender = (Gender)_parsedGenderObj;
+                                    Console.Write("Введіть дату народження (dd.MM.yyyy): ");
+                                    if (DateTime.TryParseExact(Console.ReadLine(), "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime birthDate))
+                                    {
+                                        Console.Write("Введіть номер телефону: ");
+                                        string number = Console.ReadLine();
+                                        Person personWithManualData = new Person(_name, _gender, birthDate, number);
+                                        people.Add(personWithManualData);
+                                        Console.Write("Об'єкт додано");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Некоректна дата народження.");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Некоректна стать.");
+                                }
+                                break;
+                            default:
+                                Console.WriteLine("Некоректний вибір конструктора.");
+                                break;
 
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.Write("Введіть характеристики користувача в форматі: Name,Gender,BirthDate,Number:\n");
+                        string inputString = Console.ReadLine();
+                        if (Person.TryParse(inputString, out Person new_Person))
+                        {
+                            people.Add(new_Person);
+                            Console.WriteLine("Об'єкт додано.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Некоректний формат вводу.");
+                        }
+                        break;
+                    }
+                default:
+                    Console.WriteLine("Некоректний вибір");
+                    break;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Досягнуто максимальну кількість об'єктів.");
+        }
+    }
 }
