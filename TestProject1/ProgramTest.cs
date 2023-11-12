@@ -314,5 +314,19 @@ namespace TestProject
             Assert.AreEqual("Seyran", people[1].Name);
             Assert.AreEqual(Gender.Female, people[1].Gender);
         }
+
+        // Тест для перевірки читання порожнього файлу
+        [TestMethod]
+        public void Read_From_File_CSV_Empty_File_Returns_Empty_List()
+        {
+            // Arrange:
+            File.WriteAllText(temp_Csv_File_Path, "");
+
+            // Act:
+            List<Person> people = Program.ReadFromFileCSV(temp_Csv_File_Path);
+
+            // Assert:
+            Assert.AreEqual(0, people.Count);
+        }
     }
 }
