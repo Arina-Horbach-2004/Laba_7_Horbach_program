@@ -226,5 +226,25 @@ namespace TestProject
             // Clean up
             File.Delete(temp_Csv_File_Path);
         }
+
+        [TestMethod]
+        public void SaveToJson_WritesToJSONFile()
+        {
+            // Arrange
+            List<Person> people = new List<Person>
+            {
+                new Person("Ferit", Gender.Male),
+                new Person("Seyran", Gender.Female)
+            };
+
+            // Act
+            Program.SaveToFileJson(people, temp_Json_File_Path);
+
+            // Assert
+            Assert.IsTrue(File.Exists(temp_Json_File_Path), "The JSON file should have been created.");
+
+            // Clean up
+            File.Delete(temp_Json_File_Path);
+        }
     }
 }
