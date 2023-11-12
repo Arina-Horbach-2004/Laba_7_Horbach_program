@@ -264,5 +264,20 @@ namespace TestProject
             // Clean up
             File.Delete(temp_Json_File_Path);
         }
+
+        // Тест для перевірки читання порожнього файлу
+        [TestMethod]
+        public void Read_From_File_JSON_Empty_File_Returns_Empty_List()
+        {
+            // Arrange:
+            File.WriteAllText(temp_Json_File_Path, "");
+
+            // Act:
+            List<Person> people = Program.ReadFromFileJson(temp_Json_File_Path);
+
+            // Assert:
+            Assert.AreEqual(0, people.Count);
+
+        }
     }
 }
