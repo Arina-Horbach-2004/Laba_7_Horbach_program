@@ -368,4 +368,30 @@ public class Program
             }
         }
     }
+
+    public static void Demo_behavior(List<Person> people)
+    {
+        Console.WriteLine("Демонстрація поведінки:");
+        if (people.Count > 0)
+        {
+            Console.Write("Виберіть номер об'єкта для демонстрації: ");
+            if (int.TryParse(Console.ReadLine(), out int demo_index) && demo_index > 0 && demo_index <= people.Count)
+            {
+                Console.WriteLine("Без параметрів:");
+                people[demo_index - 1].DisplayInfo();
+                Console.WriteLine("З параметром:");
+                people[demo_index - 1].DisplayInfo($"Час реєстрації: {DateTime.Now:HH:mm:ss dd.MM.yyyy}");
+            }
+            else
+            {
+                Console.WriteLine("Некоректний номер об'єкта.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Немає об'єктів для демонстрації.");
+        }
+    }
+
+
 }
