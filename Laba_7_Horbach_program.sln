@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba_7_Horbach_program", "Laba_7_Horbach_program\Laba_7_Horbach_program.csproj", "{541CED63-5732-4C4A-AD12-A6F3B44FD208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{55534D49-E9B5-48F4-98C0-F03CFC63EEA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{541CED63-5732-4C4A-AD12-A6F3B44FD208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541CED63-5732-4C4A-AD12-A6F3B44FD208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541CED63-5732-4C4A-AD12-A6F3B44FD208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541CED63-5732-4C4A-AD12-A6F3B44FD208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55534D49-E9B5-48F4-98C0-F03CFC63EEA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55534D49-E9B5-48F4-98C0-F03CFC63EEA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55534D49-E9B5-48F4-98C0-F03CFC63EEA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55534D49-E9B5-48F4-98C0-F03CFC63EEA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {154FA0F2-15EF-4F3A-9C4C-4FF00E7FD3C2}
+	EndGlobalSection
+EndGlobal
