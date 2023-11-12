@@ -307,4 +307,47 @@ public class Program
             Console.WriteLine("Некоректний вибір способу видалення.");
         }
     }
+
+    public static void Find_Person(List<Person> people)
+    {
+        Console.WriteLine("Пошук об'єкта:");
+        Console.Write("Введіть характеристику для пошуку (Name/Gender/BirthDate/Number): ");
+        string searchCharacteristic = Console.ReadLine();
+        Console.Write($"Введіть значення для {searchCharacteristic}: ");
+        string searchValue = Console.ReadLine();
+
+        // Визначення умови пошуку
+        Predicate<Person> condition = person =>
+        {
+            switch (searchCharacteristic)
+            {
+                case "Name":
+                    return person.Name.Equals(searchValue, StringComparison.OrdinalIgnoreCase);
+                case "Gender":
+                    return person.Gender.ToString().Equals(searchValue, StringComparison.OrdinalIgnoreCase);
+                case "BirthDate":
+                    if (DateTime.TryParseExact(searchValue, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime birthDate))
+                    {
+                        return person.BirthDate == birthDate;
+                    }
+                    return false;
+                case "Number":
+                    return person.Number.Equals(searchValue, StringComparison.OrdinalIgnoreCase);
+                default:
+                    return false;
+            }
+        };
+
+        Person foundPerson = people.Find(condition);
+
+        if (foundPerson != null)
+        {
+            Console.WriteLine("Результат пошуку:");
+            foundPerson.DisplayInfo();
+        }
+        else
+        {
+            Console.WriteLine("Об'єкт, який відповідає умові пошуку, не знайдено.");
+        }
+    }
 }
