@@ -350,4 +350,22 @@ public class Program
             Console.WriteLine("Об'єкт, який відповідає умові пошуку, не знайдено.");
         }
     }
+
+    public static void Display_People(List<Person> people)
+    {
+        if (people.Count == 0)
+        {
+            Console.WriteLine("Об'єктів ще не було додано.");
+        }
+        else
+        {
+            Console.WriteLine("Об'єкти:");
+            for (int i = 0; i < people.Count; i++)
+            {
+                Console.WriteLine($"Об'єкт {i + 1}:");
+                people[i].DisplayInfo();
+                Console.WriteLine();
+            }
+        }
+    }
 }
