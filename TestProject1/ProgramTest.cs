@@ -328,5 +328,19 @@ namespace TestProject
             // Assert:
             Assert.AreEqual(0, people.Count);
         }
+
+        // Тест для перевірки читання файлу з некоректними даними
+        [TestMethod]
+        public void Read_From_File_CSV_Invalid_Data_Returns_Empty_List()
+        {
+            // Arrange:
+            File.WriteAllText(temp_Csv_File_Path, "Invalid Data\n");
+
+            // Act: 
+            List<Person> people = Program.ReadFromFileCSV(temp_Csv_File_Path);
+
+            // Assert: 
+            Assert.AreEqual(0, people.Count);
+        }
     }
 }
