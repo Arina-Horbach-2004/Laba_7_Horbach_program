@@ -406,4 +406,27 @@ public class Program
             Console.WriteLine("Немає об'єктів для підрахунку середнього віку.");
         }
     }
+
+    public static void SaveToFIleCVS(List<Person> accounts, string path)
+    {
+        List<string> lines = new List<string>();
+        foreach (var item in accounts)
+        {
+            lines.Add(item.ToString());
+        }
+        try
+        {
+            File.WriteAllLines(path, lines);
+            Console.WriteLine($"Check out the CVS file.at: {Path.GetFullPath(path)}");
+        }
+        catch (IOException ex)
+        {
+            // Викидаємо IOException при помилці запису в файл.
+            throw ex;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 }
