@@ -393,5 +393,17 @@ public class Program
         }
     }
 
-
+    public static void DemoStaticMethods(List<Person> people)
+    {
+        Console.WriteLine("Демонстрація роботи static методів:");
+        if (people.Count > 0)
+        {
+            double average_age = Person.Average_age(people);
+            Console.WriteLine($"Середній вік об'єктів: {average_age} років");
+        }
+        else
+        {
+            Console.WriteLine("Немає об'єктів для підрахунку середнього віку.");
+        }
+    }
 }
