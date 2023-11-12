@@ -448,4 +448,35 @@ public class Program
             Console.WriteLine(ex.Message);
         }
     }
+
+    public static List<Person> ReadFromFileJson(string path)
+    {
+        List<Person> accounts = new List<Person>();
+        try
+        {
+            List<string> lines = new List<String>();
+            lines = File.ReadAllLines(path).ToList();
+            Console.WriteLine("\nContents of JSON file:\n");
+            foreach (var item in lines)
+            {
+                Console.WriteLine(item);
+            }
+            foreach (var item in lines)
+            {
+                Person? account = JsonSerializer.Deserialize<Person>(item);
+                if (account != null) accounts.Add(account);
+            }
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Reading JSON file error:{ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return accounts;
+    }
+
+
 }
