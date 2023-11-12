@@ -429,4 +429,23 @@ public class Program
             Console.WriteLine(ex.Message);
         }
     }
+
+    public static void SaveToFileJson(List<Person> accounts, string path)
+    {
+        try
+        {
+            string jsonstring = "";
+            foreach (var item in accounts)
+            {
+                jsonstring += JsonSerializer.Serialize<Person>(item);
+                jsonstring += "\n";
+            }
+            File.WriteAllText(path, jsonstring);
+            Console.WriteLine($"Cheak out the JSON file at: {Path.GetFullPath(path)}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 }
