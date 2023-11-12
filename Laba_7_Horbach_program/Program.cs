@@ -232,4 +232,79 @@ public class Program
             Console.WriteLine("Досягнуто максимальну кількість об'єктів.");
         }
     }
+
+    public static void Remove_Person(List<Person> people)
+    {
+        Console.WriteLine("Видалення об'єкта: ");
+
+        Console.Write("Виберіть спосіб видалення (1 - за номером, 2 - за характеристикою): ");
+        if (int.TryParse(Console.ReadLine(), out int deleteChoice))
+        {
+            switch (deleteChoice)
+            {
+                case 1:
+                    Console.Write("Введіть номер об'єкта для видалення (1 - перший, 2 - другий і т.д.): ");
+                    if (int.TryParse(Console.ReadLine(), out int deleteIndex) && deleteIndex > 0 && deleteIndex <= people.Count)
+                    {
+                        people.RemoveAt(deleteIndex - 1);
+                        Console.WriteLine("Об'єкт видалено.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Некоректний номер об'єкта.");
+                    }
+                    break;
+                case 2:
+                    Console.Write("Введіть характеристику для видалення (Name/Gender/BirthDate/Number): ");
+                    string deleteProperty = Console.ReadLine();
+
+                    Console.Write($"Введіть значення для  {deleteProperty}: ");
+                    string deleteValue = Console.ReadLine();
+
+                    switch (deleteProperty)
+                    {
+                        case "Name":
+                            people.RemoveAll(p => p.Name.Equals(deleteValue, StringComparison.OrdinalIgnoreCase));
+                            break;
+                        case "Gender":
+                            if (Enum.TryParse(typeof(Gender), deleteValue, true, out object deleteGenderObj))
+                            {
+                                Gender deleteGender = (Gender)deleteGenderObj;
+                                people.RemoveAll(p => p.Gender == deleteGender);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Некоректна стать. ");
+                            }
+                            break;
+                        case "BirthDate":
+                            if (DateTime.TryParseExact(deleteValue, "dd.MM.yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime deleteBirthDate))
+                            {
+                                people.RemoveAll(p => p.BirthDate == deleteBirthDate);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Некоректна дата народження.");
+                            }
+                            break;
+                        case "Number":
+                            people.RemoveAll(p => p.Number.Equals(deleteValue));
+                            break;
+                        default:
+                            Console.WriteLine("Некоректна характеристика для видалення.");
+                            break;
+                    }
+
+                    Console.WriteLine("Об'єкти видалено. ");
+                    break;
+                default:
+                    Console.WriteLine("Некоректний вибір способу видалення. ");
+                    break;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Некоректний вибір способу видалення.");
+        }
+    }
 }
