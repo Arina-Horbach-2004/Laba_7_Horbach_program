@@ -295,5 +295,24 @@ namespace TestProject
             Assert.AreEqual(0, people.Count);
 
         }
+
+        // Тест для перевірки читання файлу з коректними даними
+        [TestMethod]
+        public void ReadFromFileCSV_Test()
+        {
+            // Arrange
+            File.WriteAllText(temp_Csv_File_Path, "Ferit,Male,24.11.2004,48538535801\n");
+            File.AppendAllText(temp_Csv_File_Path, "Seyran,Female,01.11.1997,48536636901\n");
+
+            // Act
+            List<Person> people = Program.ReadFromFileCSV(temp_Csv_File_Path);
+
+            // Assert
+            Assert.AreEqual(2, people.Count);
+            Assert.AreEqual("Ferit", people[0].Name);
+            Assert.AreEqual(Gender.Male, people[0].Gender);
+            Assert.AreEqual("Seyran", people[1].Name);
+            Assert.AreEqual(Gender.Female, people[1].Gender);
+        }
     }
 }
